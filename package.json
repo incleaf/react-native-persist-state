@@ -1,0 +1,33 @@
+{
+  "name": "react-native-persist-state",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incleaf/react-native-persist-state.git"
+  },
+  "author": "Hyeonsu Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/incleaf/react-native-persist-state/issues"
+  },
+  "homepage": "https://github.com/incleaf/react-native-persist-state#readme",
+  "devDependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.9",
+    "@types/react": "^17.0.33",
+    "react": "^17.0.2",
+    "recoil": "^0.4.1",
+    "typescript": "^4.4.4"
+  },
+  "peerDependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.9",
+    "react": "^17.0.2",
+    "recoil": "^0.4.1"
+  }
+}
