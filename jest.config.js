@@ -6,4 +6,5 @@ module.exports = {
   transformIgnorePatterns: [
     "<rootDir>/node_modules/(?!(@react-native|react-native|recoil)/)",
   ],
+  setupFiles: ["<rootDir>/jest.setup.js"],
 };

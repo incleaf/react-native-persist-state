@@ -1,10 +1,6 @@
 import { createPersistStore } from "./createPersistStore";
 import { PersistStore__Internal } from "./types.internal";
 
-jest.mock("@react-native-async-storage/async-storage", () =>
-  require("@react-native-async-storage/async-storage/jest/async-storage-mock")
-);
-
 describe("createPersistStore (Public API)", () => {
   it("should be initialized with initial data", async () => {
     const fooStore = createPersistStore<string>({

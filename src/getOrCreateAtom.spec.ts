@@ -1,19 +1,16 @@
-import { createPersistStore } from ".";
+import { createPersistStore } from "./createPersistStore";
 import { getOrCreateAtom } from "./getOrCreateAtom";
 
-// jest.mock("recoil", () => require("recoil/native/recoil"));
+describe("getOrCreateAtom", () => {
+  it("should use not make a new atom with the same key", () => {
+    const store = createPersistStore({
+      key: "foo",
+      initialData: null,
+    });
 
-test("getOrCreateAtom", () => {
-  expect(1).toEqual(1);
-  // it("should use not make a new atom with the same key", () => {
-  //   const store = createPersistStore({
-  //     key: "foo",
-  //     initialData: null,
-  //   });
+    const atom1 = getOrCreateAtom(store);
+    const atom2 = getOrCreateAtom(store);
 
-  //   const atom1 = getOrCreateAtom(store);
-  //   const atom2 = getOrCreateAtom(store);
-
-  //   expect(atom1).toBe(atom2);
-  // });
+    expect(atom1).toBe(atom2);
+  });
 });
