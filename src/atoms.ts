@@ -13,6 +13,11 @@ export function getOrCreateAtom<P>(store: PersistStore<P>) {
       effects_UNSTABLE: [
         ({ onSet }) => {
           onSet((newValue) => {
+            // null should only stay as JavaScript state
+            if (newValue === null) {
+              return;
+            }
+
             (store as PersistStore__Internal<P>).__setWithoutDispatch(newValue);
           });
         },
