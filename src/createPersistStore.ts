@@ -13,6 +13,8 @@ export function createPersistStore<P>({
   transform,
 }: PersistStoreOptions<P>) {
   const listeners = new Set<(value: P) => void>();
+  const serialize = (value: unknown) =>
+    typeof value === "string" ? value : JSON.stringify(value);
   const getInitialData = () => {
     if (isFunction(initialData)) {
       return initialData();
@@ -36,7 +38,7 @@ export function createPersistStore<P>({
       return value;
     },
     set: async (value: P) => {
-      const data = typeof value === "string" ? value : JSON.stringify(value);
+      const data = serialize(value);
       await storage.setItem(key, data);
       listeners.forEach((listener) => {
         listener(value);
@@ -51,7 +53,7 @@ export function createPersistStore<P>({
     },
     key,
     __setWithoutDispatch: async (value: string) => {
-      const data = typeof value === "string" ? value : JSON.stringify(value);
+      const data = serialize(value);
       await storage.setItem(key, data);
     },
     __subscribe: (callback: (value: P) => void) => {
