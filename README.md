@@ -2,6 +2,9 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/incleaf/react-native-persist-state/Test%20Runner?style=flat-square)
 ![Codecov](https://img.shields.io/codecov/c/github/incleaf/react-native-persist-state?style=flat-square)
+![GitHub](https://img.shields.io/github/license/incleaf/react-native-persist-state?style=flat-square)
+![GitHub top language](https://img.shields.io/github/languages/top/incleaf/react-native-persist-state?style=flat-square)
+![npm](https://img.shields.io/npm/v/react-native-persist-state?style=flat-square)
 
 ✨ Manage persist state with simple API
 
