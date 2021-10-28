@@ -1,10 +1,13 @@
 # react-native-persist-state
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/incleaf/react-native-persist-state/Test%20Runner?style=flat-square)
+![Codecov](https://img.shields.io/codecov/c/github/incleaf/react-native-persist-state?style=flat-square)
+
 ✨ Manage persist state with simple API
 
 - Shared state across components using Hook
 - Ability to access state outside of components
-- Fully written in TypeScript
+- Fully tested and written in TypeScript
 
 ## API Overview
 
