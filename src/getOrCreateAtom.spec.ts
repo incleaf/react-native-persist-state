@@ -1,5 +1,5 @@
 import { createPersistStore } from ".";
-import { getOrCreateAtom } from "./atoms";
+import { getOrCreateAtom } from "./getOrCreateAtom";
 
 // jest.mock("recoil", () => require("recoil/native/recoil"));
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
-import { getOrCreateAtom } from "./atoms";
+import { getOrCreateAtom } from "./getOrCreateAtom";
 import { PersistStore } from "./types";
 import { PersistStore__Internal } from "./types.internal";
 
