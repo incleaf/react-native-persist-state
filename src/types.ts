@@ -7,7 +7,7 @@ export type AbstractStorage = {
 export interface PersistStoreOptions<P> {
   key: string;
   initialData: P | (() => P);
-  storage?: AbstractStorage;
+  storage: AbstractStorage;
   transform?: (value: string) => P;
 }
 

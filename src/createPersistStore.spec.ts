@@ -1,11 +1,13 @@
 import { createPersistStore } from "./createPersistStore";
 import { PersistStore__Internal } from "./types.internal";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 describe("createPersistStore (Public API)", () => {
   it("should be initialized with initial data", async () => {
     const fooStore = createPersistStore<string>({
       key: "foo",
       initialData: "foo",
+      storage: AsyncStorage,
     });
 
     expect(await fooStore.get()).toEqual("foo");
@@ -13,6 +15,7 @@ describe("createPersistStore (Public API)", () => {
     const barStore = createPersistStore<string>({
       key: "foo",
       initialData: () => "bar",
+      storage: AsyncStorage,
     });
 
     expect(await barStore.get()).toEqual("bar");
@@ -22,6 +25,7 @@ describe("createPersistStore (Public API)", () => {
     const store = createPersistStore<string>({
       key: "foo",
       initialData: "bar",
+      storage: AsyncStorage,
     });
 
     await store.set("baz");
@@ -34,6 +38,7 @@ describe("createPersistStore (Public API)", () => {
     const store = createPersistStore<string>({
       key: "foo",
       initialData: "bar",
+      storage: AsyncStorage,
     });
 
     await store.set("foo");
@@ -48,6 +53,7 @@ describe("createPersistStore (Public API)", () => {
     const objectStore = createPersistStore<{ name: string }>({
       key: "foo",
       initialData: { name: "foo" },
+      storage: AsyncStorage,
       transform: JSON.parse,
     });
 
@@ -57,6 +63,7 @@ describe("createPersistStore (Public API)", () => {
     const numberStore = createPersistStore<number>({
       key: "bar",
       initialData: 100,
+      storage: AsyncStorage,
       transform: Number,
     });
 
@@ -70,6 +77,7 @@ describe("createPersistStore (Private API)", () => {
     const store = createPersistStore<string>({
       key: "foo",
       initialData: "foo",
+      storage: AsyncStorage,
     }) as PersistStore__Internal<string>;
 
     store.__setWithoutDispatch("bar");
@@ -82,6 +90,7 @@ describe("createPersistStore (Private API)", () => {
     const store = createPersistStore<string>({
       key: "foo",
       initialData: "foo",
+      storage: AsyncStorage,
     }) as PersistStore__Internal<string>;
 
     const callback1 = jest.fn();

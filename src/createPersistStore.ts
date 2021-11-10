@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PersistStore, PersistStoreOptions } from "./types";
 import { isFunction } from "./utils";
 
@@ -9,7 +8,7 @@ export function createPersistStore<P>(
 export function createPersistStore<P>({
   key,
   initialData,
-  storage = AsyncStorage,
+  storage,
   transform,
 }: PersistStoreOptions<P>) {
   const listeners = new Set<(value: P) => void>();
