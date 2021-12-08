@@ -6,12 +6,9 @@ export function createPersistStore<P>(
   options: PersistStoreOptions<P>
 ): PersistStore<P>;
 
-export function createPersistStore<P>({
-  key,
-  initialData,
-  storage = AsyncStorage,
-  transform,
-}: PersistStoreOptions<P>) {
+export function createPersistStore<P>(options: PersistStoreOptions<P>) {
+  const { key, initialData, storage = AsyncStorage } = options;
+
   const listeners = new Set<(value: P) => void>();
   const serialize = (value: unknown) =>
     typeof value === "string" ? value : JSON.stringify(value);
@@ -31,6 +28,7 @@ export function createPersistStore<P>({
         return getInitialData();
       }
 
+      const transform = (options as any).transform;
       if (transform !== undefined) {
         return transform(value);
       }
