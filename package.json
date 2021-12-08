@@ -1,6 +1,6 @@
 {
   "name": "react-native-persist-state",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/incleaf/react-native-persist-state.git"
   },
+  "files": [
+    "dist/"
+  ],
   "author": "Hyeonsu Lee",
   "license": "MIT",
   "bugs": {
