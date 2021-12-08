@@ -4,7 +4,7 @@ export type AbstractStorage = {
   removeItem(key: string, callback?: (error?: Error) => void): Promise<void>;
 };
 
-type NonUndefined<T> = T extends undefined ? never : T;
+export type NonUndefined<T> = T extends undefined ? never : T;
 
 export type PersistStoreOptions<P, Value = NonUndefined<P>> = [P] extends [
   undefined

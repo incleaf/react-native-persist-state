@@ -1,5 +1,5 @@
 import { atom, RecoilState } from "recoil";
-import { PersistStore } from "./types";
+import { NonUndefined, PersistStore } from "./types";
 import { PersistStore__Internal } from "./types.internal";
 
 const storeMap = new Map<string, RecoilState<any> | undefined>();
@@ -27,5 +27,5 @@ export function getOrCreateAtom<P>(store: PersistStore<P>) {
     return newAtom;
   }
 
-  return cached as RecoilState<P>;
+  return cached as RecoilState<NonUndefined<P>>;
 }

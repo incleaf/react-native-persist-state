@@ -8,6 +8,7 @@ describe("uesPersistState", () => {
     const store = createPersistStore({
       key: "foo",
       initialData: 100,
+      transform: Number,
     }) as PersistStore__Internal<number>;
 
     const { result } = renderHook(() => usePersistState(store));
@@ -24,6 +25,7 @@ describe("uesPersistState", () => {
     const storeA = createPersistStore({
       key: "foo",
       initialData: 100,
+      transform: Number,
     }) as PersistStore__Internal<number>;
     const __subscribeA = jest.spyOn(storeA, "__subscribe");
     const __unsubscribeA = jest.spyOn(storeA, "__unsubscribe");
@@ -35,6 +37,7 @@ describe("uesPersistState", () => {
     const storeB = createPersistStore({
       key: "bar",
       initialData: 100,
+      transform: Number,
     }) as PersistStore__Internal<number>;
     const __subscribeB = jest.spyOn(storeB, "__subscribe");
     const __unsubscribeB = jest.spyOn(storeB, "__unsubscribe");
