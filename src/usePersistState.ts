@@ -1,4 +1,5 @@
 import { SetStateAction, useCallback, useEffect, useState } from "react";
+import { NonUndefined } from ".";
 import { usePersistStateProvider } from "./PersistStateProvider";
 import { PersistStore } from "./types";
 import { PersistStore__Internal } from "./types.internal";
@@ -14,10 +15,12 @@ export function usePersistState<P>(store: PersistStore<P>) {
     });
   }
 
-  const [value, setValue] = useState(client.cacheMap.get(store.key) as P);
+  const [value, setValue] = useState(
+    client.cacheMap.get(store.key) as NonUndefined<P>
+  );
 
   const setAndDispatchValue = useCallback(
-    (valueOrSetter: SetStateAction<P>) => {
+    (valueOrSetter: SetStateAction<NonUndefined<P>>) => {
       setValue((currentValue) => {
         const newValue = isFunction(valueOrSetter)
           ? valueOrSetter(currentValue)

@@ -4,16 +4,28 @@ export type AbstractStorage = {
   removeItem(key: string, callback?: (error?: Error) => void): Promise<void>;
 };
 
-export interface PersistStoreOptions<P> {
-  key: string;
-  initialData: P | (() => P);
-  storage: AbstractStorage;
-  transform?: (value: string) => P;
-}
+export type NonUndefined<T> = T extends undefined ? never : T;
 
-export interface PersistStore<P> {
-  get: () => Promise<P>;
-  set: (item: P) => Promise<void>;
+export type PersistStoreOptions<P, Value = NonUndefined<P>> = [P] extends [
+  undefined
+]
+  ? never
+  : [P] extends [string | null]
+  ? {
+      key: string;
+      initialData: Value | (() => Value);
+      storage: AbstractStorage;
+    }
+  : {
+      key: string;
+      initialData: Value | (() => Value);
+      storage: AbstractStorage;
+      transform: (value: string) => Value;
+    };
+
+export interface PersistStore<P, Value = NonUndefined<P>> {
+  get: () => Promise<Value>;
+  set: (item: Value) => Promise<void>;
   remove: () => Promise<void>;
   key: string;
 }

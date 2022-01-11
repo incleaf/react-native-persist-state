@@ -15,6 +15,7 @@ describe("uesPersistState", () => {
       key: "foo",
       initialData: 100,
       storage: AsyncStorage,
+      transform: Number,
     });
 
     const client = new PersistStateClient();
@@ -38,6 +39,7 @@ describe("uesPersistState", () => {
       key: "foo",
       initialData: 100,
       storage: AsyncStorage,
+      transform: Number,
     });
 
     const client = new PersistStateClient();
@@ -60,6 +62,7 @@ describe("uesPersistState", () => {
       key: "foo",
       initialData: 100,
       storage: AsyncStorage,
+      transform: Number,
     });
 
     const client = new PersistStateClient();
@@ -77,8 +80,9 @@ describe("uesPersistState", () => {
 
     await waitForNextUpdate();
 
-    store.set(12345);
-    await waitForNextUpdate();
+    act(() => {
+      store.set(12345);
+    });
 
     expect(result.current[0]).toEqual(12345);
   });
@@ -88,6 +92,7 @@ describe("uesPersistState", () => {
       key: "foo",
       initialData: 100,
       storage: AsyncStorage,
+      transform: Number,
     }) as PersistStore__Internal<number>;
 
     const client = new PersistStateClient();
@@ -113,9 +118,7 @@ describe("uesPersistState", () => {
       setValue(12345);
     });
 
-    await waitForNextUpdate();
-
     expect(result.current[0]).toEqual(12345);
-    expect(subscriber).toHaveBeenCalledWith(12345);
+    expect(subscriber).toHaveBeenCalled();
   });
 });

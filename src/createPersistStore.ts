@@ -5,12 +5,9 @@ export function createPersistStore<P>(
   options: PersistStoreOptions<P>
 ): PersistStore<P>;
 
-export function createPersistStore<P>({
-  key,
-  initialData,
-  storage,
-  transform,
-}: PersistStoreOptions<P>) {
+export function createPersistStore<P>(options: PersistStoreOptions<P>) {
+  const { key, initialData, storage } = options;
+
   const listeners = new Set<(value: P) => void>();
   const serialize = (value: unknown) =>
     typeof value === "string" ? value : JSON.stringify(value);
@@ -30,6 +27,8 @@ export function createPersistStore<P>({
         return getInitialData();
       }
 
+      const transform = (options as any).transform;
+
       if (transform !== undefined) {
         return transform(value);
       }
@@ -38,10 +37,10 @@ export function createPersistStore<P>({
     },
     set: async (value: P) => {
       const data = serialize(value);
-      await storage.setItem(key, data);
-      listeners.forEach((listener) => {
+      listeners.forEach((listener, i) => {
         listener(value);
       });
+      await storage.setItem(key, data);
     },
     remove: async () => {
       await storage.removeItem(key);
